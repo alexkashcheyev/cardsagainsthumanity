@@ -4,7 +4,9 @@
     <div *ngIf="state.me.czar">
       <p>Поздравляю, Вы - Царь! (но это не навсегда)</p>
       <p>Дождитесь, пока имена всех участников покажутся на мониторе и нажмите на кнопку ниже</p>
-      <button (click)="startGame()">Начать игру!</button>
+      <p class="button">
+        <button (click)="startGame()">Начать игру!</button>
+      </p>
     </div>
     <div *ngIf="!state.me.czar">
       <p>Добро пожаловать, {{state.me.name}}</p>
@@ -16,7 +18,7 @@
   <!-- round_start -->
   <div *ngIf="state.gameState == 'ROUND_START'">
     <div *ngIf="state.me.czar">
-      <p>Ждите, пока остальные смешно по их мнению пошутят. Хорошо, что их мнение Царя не волнует</p>
+      <p>Ждите, пока игроки не предложат свои варианты</p>
     </div>
     <div *ngIf="!state.me.czar && state.blackCard && state.me.sentCards.length == 0">
       <p>Выберите {{state.blackCard.cases.length}} из Ваших карт</p>
@@ -28,9 +30,11 @@
           </span>
         </li>
       </ul>
-      <button (click)="sendCards()" [disabled]="selectedCards.length < state.blackCard.cases.length">
-        Отправить карты
-      </button>
+      <p class="button">
+        <button (click)="sendCards()" [disabled]="selectedCards.length < state.blackCard.cases.length">
+          Отправить карты
+        </button>
+      </p>
     </div>
     <div *ngIf="!state.me.czar && state.me.sentCards.length > 0">
       <p>Теперь ждите, пока пошутят остальные</p>
@@ -64,7 +68,9 @@
     </div>
     <div *ngIf="state.me.czar">
       <p>Удовлетворившись результатом игры, нажмите на кнопку</p>
-      <button (click)="nextRound()">Перейти к следующему раунду</button>
+      <p class="button">
+        <button (click)="nextRound()">Следующий раунд</button>
+      </p>
     </div>
   </div>
   <!-- /round_next -->
@@ -73,7 +79,9 @@
   <div *ngIf="state.gameState == 'OVER'">
     <p>Игра окончена. Надеюсь, вам понравилось</p>
 
-    <button (click)="window.location.reload()">Играть еще раз</button>
+    <p class="button">
+      <button (click)="reload()">Играть еще раз</button>
+    </p>
   </div>
   <!-- /over -->
 </div>

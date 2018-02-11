@@ -1,25 +1,26 @@
-<div class="option">
-  <h2>Это устройство видите только Вы?</h2>
-  <p>Посмотрите вокруг, найдите экран с QR-кодом и отсканируйте его.</p>
-  <p>Либо просто введите код игры с того же экрана и своё имя.</p>
-  <form>
-    <div>
-      <label for="gameId">Введите код игры:</label>
-      <input type="number" id="gameId" name="gameId" [(ngModel)]="gameId" />
-    </div>
-    <div>
-      <label for="name">И выберите имя:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="name" />
-    </div>
-    <button type="submit" (click)="join()">Присоединиться</button>
-  </form>
-</div>
-<div class="option">
-  <h2>
-    Это устройство видят все игроки?
-  </h2>
-  <p>Чтобы начать игру, понадобится компьютер или телевизор. Нажатие кнопки ниже - последнее, что с ним придётся делать во время игры, я надеюсь.</p>
-  <button (click)="createGame()">
-    Начать игру
-  </button>
+<div class="index">
+  <div class="option">
+    <h2>Это Ваше личное устройство?</h2>
+    <p>Отсканируйте QR-код либо введите числовой код вручную</p>
+    <form class="join-form">
+      <div>
+        <label for="gameId">Код игры:</label>
+        <input type="number" id="gameId" name="gameId" [(ngModel)]="gameId" />
+      </div>
+      <div>
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" />
+      </div>
+      <button type="submit" (click)="join()">Присоединиться</button>
+    </form>
+  </div>
+  <div class="option">
+    <h2>
+      Это устройство видят все игроки?
+    </h2>
+    <p>После нажатия кнопки ниже, оставьте его в покое.</p>
+    <button (click)="createGame()">
+      Начать игру
+    </button>
+  </div>
 </div>

@@ -8,8 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PlayerlistComponent implements OnInit {
   @Input() players: Iterable<any>;
 
-  @Input() title: string;
-
   constructor() { }
 
   ngOnInit() {

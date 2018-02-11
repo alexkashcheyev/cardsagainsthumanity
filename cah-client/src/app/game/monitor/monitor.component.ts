@@ -14,6 +14,10 @@ export class MonitorComponent implements OnInit {
   constructor(private gameState: GameStateService) {
   }
 
+  reload() {
+    window.location.reload();
+  }
+
   ngOnInit() {
     const gameId = localStorage['game'];
     setInterval(

@@ -9,6 +9,7 @@ import { PlayerComponent } from './player/player.component';
 import { MonitorComponent } from './monitor/monitor.component';
 import { PlayerlistComponent } from './playerlist/playerlist.component';
 import { JokeComponent } from './joke/joke.component';
+import { UnderscorePipe } from './underscore.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { JokeComponent } from './joke/joke.component';
     FormsModule,
     HttpClientModule
   ],
-  declarations: [GamerootComponent, IndexComponent, PlayerComponent, MonitorComponent, PlayerlistComponent, JokeComponent],
+  declarations: [GamerootComponent, IndexComponent, PlayerComponent, MonitorComponent, PlayerlistComponent, JokeComponent, UnderscorePipe],
   exports: [GamerootComponent],
   providers: [GameStateService]
 })

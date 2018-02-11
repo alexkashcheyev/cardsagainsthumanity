@@ -38,7 +38,7 @@ export class PlayerComponent implements OnInit {
     const i = this.selectedCards.indexOf(id);
     if (i > -1) {
       this.selectedCards.splice(i, 1);
-    } else {
+    } else if (this.selectedCards.length < this.gameState.state['blackCard']['cases'].length) {
       this.selectedCards.push(id);
     }
   }
@@ -57,4 +57,9 @@ export class PlayerComponent implements OnInit {
   public nextRound() {
     this.gameState.nextRound(this.gameId, this.playerId);
   }
+
+  reload() {
+    window.location.reload();
+  }
+
 }

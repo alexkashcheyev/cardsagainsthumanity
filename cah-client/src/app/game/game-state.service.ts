@@ -111,7 +111,7 @@ export class GameStateService {
     ).toPromise()
     .then(v => {
       console.log('success');
-    })
+    });
   }
 
 }

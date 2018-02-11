@@ -1,10 +1,9 @@
-<div *ngIf="!!players && !!players.length">
-  <h3>{{ title }}</h3>
-  <ul class="players">
-    <li *ngFor="let p of players" 
-    [class.czar]="p.czar" 
-    [class.sentCards]="p.sentCards.length > 0">
-      {{p.name}}
-    </li>
-  </ul>
-</div>
+<ul class="players" *ngIf="!!players && !!players.length">
+  <li *ngFor="let p of players">
+    <span class="badge">
+      <i *ngIf="p.czar" class="fas fa-chess-queen"></i>
+    </span>
+    <span class="name">{{ p.name }}</span>
+    <span class="score">{{ p.points }}</span>
+  </li>
+</ul>
