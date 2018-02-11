@@ -1,0 +1,75 @@
+<div class="monitor" *ngIf="!!state && !!state.gameState">
+  <!-- lobby -->
+  <div *ngIf="state.gameState == 'LOBBY'">
+    <h2>Ожидание игроков</h2>
+    <div class="join" >
+      <p>Введите этот код, чтобы присоединиться к игре</p>
+      <div>{{state.gameId}}</div>
+      <p>Или отсканируйте этот QR-код:</p>
+      <div>(это позже)</div>
+    </div>
+    <cah-playerlist 
+      [players]="state.players">
+    </cah-playerlist>
+  </div>
+  <!-- /lobby -->
+  <!-- round_start -->
+  <div *ngIf="state.gameState == 'ROUND_START' && !!state.blackCard && !!state.blackCard.text">
+    <h2>Раунд начался</h2>
+    <div class="blackCard">
+      {{state.blackCard.text}}
+    </div>
+    
+    <cah-playerlist 
+      [players]="state.players">
+    </cah-playerlist>
+  </div>
+  <!-- /round start -->  
+
+  <!-- round_court -->
+  <div *ngIf="state.gameState == 'ROUND_COURT'">
+    <h2>Царский суд</h2>
+
+    <cah-playerlist 
+      [players]="state.players">
+    </cah-playerlist>
+  </div>
+  <!-- /round_court -->
+
+  <!-- round_next -->
+  <div *ngIf="state.gameState == 'ROUND_NEXT'">
+    <h2>Раунд окончен</h2>
+
+    <ul>
+      <ng-container *ngFor="let p of state.players">
+        <li *ngIf="p.sentCards.length > 0">
+          <cah-joke
+            [blackcard]="state.blackCard"
+            [player]="p"
+          ></cah-joke>
+          <div class="userInfo">
+            <span class="name">{{ p.name }}</span>
+            <span class="points">{{ p.points }}</span>
+            <span class="badge winner" *ngIf="p.id == state.winnerId"></span>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <!-- /round_next -->
+
+  <!-- over -->
+  <div *ngIf="state.gameState == 'OVER'">
+    <h2>Игра окончена</h2>
+
+    <cah-playerlist
+      [players]="state.players">
+    </cah-playerlist>
+
+    <button (click)="window.location.reload()">Играть еще раз</button>
+  </div>
+  <!-- /over -->
+</div>
+<div class="loading" *ngIf="!state || !state.gameState">
+  Загрузка
+</div>

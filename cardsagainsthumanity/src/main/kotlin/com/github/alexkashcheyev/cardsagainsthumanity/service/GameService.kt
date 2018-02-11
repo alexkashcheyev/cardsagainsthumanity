@@ -67,7 +67,12 @@ class GameService (private val gameRepository: GameRepository): IGameService {
 
         var alivePlayersSentCards = true
         for (p in game.players.values) {
-            alivePlayersSentCards = alivePlayersSentCards && p.isAlive && p.sentCards.size > 0
+            // alivePlayersSentCards will be true if all the non-Czar players
+            // have sent their cards
+
+            alivePlayersSentCards =
+                    alivePlayersSentCards
+                    && (p.isCzar || (p.isAlive && p.sentCards.size > 0))
         }
 
         if (alivePlayersSentCards) {
@@ -102,6 +107,12 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         }
     }
 
+    override fun nextRound(gameId: Long, playerId: Long) {
+        val game = gameRepository.getById(gameId)
+
+        tryStartRound(game)
+    }
+
     override fun getClientState(gameId: Long, playerId: Long): ClientState {
         val game = gameRepository.getById(gameId)
         val player = game.players[playerId] ?: throw NullPointerException("There is no such player")
@@ -110,6 +121,7 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         val res = ClientState(
                 gameState = game.state,
                 gameId = gameId,
+                blackCard = game.blackCard,
                 me = PlayerPrivateState(
                         id = playerId,
                         name = player.name,
@@ -149,21 +161,7 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         if (startRound(game)) {
             game.state = GameState.ROUND_START
         } else {
-            val newGame = gameRepository.create()
-
-            for (p in game.players.values) {
-                if (newGame.czar == null) {
-                    newGame.czar = p
-                }
-                newGame.players.put(p.id, Player(
-                        id = p.id,
-                        game = newGame,
-                        name = p.name
-                ))
-            }
-
             game.state = GameState.OVER
-            game.newGameId = newGame.id
         }
     }
 
@@ -193,18 +191,19 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         if (game.czar == null) throw NullPointerException("Czar is null")
         val czar = game.czar!!
         game.czar = null
-        var i = czar.id + 1
+        var i = czar.id+1
 
-        while (i != czar.id && game.czar != null) {
-            i++
+        while (i != czar.id && game.czar == null) {
 
-            if (i >= game.players.size) {
-                i = 1
+            if (i > game.players.size) {
+                i = 0
             }
 
             if (game.players[i] != null && game.players[i]!!.isAlive) {
                 game.czar = game.players[i]
             }
+
+            i++;
         }
     }
 
@@ -232,6 +231,13 @@ class GameService (private val gameRepository: GameRepository): IGameService {
             Thread.sleep(ROUND_TIMEOUT())
 
             if (game.state == GameState.ROUND_START) {
+
+                for (p in game.players.values) {
+                    if (p.sentCards.isEmpty()) {
+                        p.isAlive = false
+                    }
+                }
+
                 game.state = GameState.ROUND_COURT
             }
         }

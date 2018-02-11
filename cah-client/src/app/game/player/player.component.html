@@ -1,0 +1,82 @@
+<div class="player" *ngIf="!!state && !!state.gameState">
+  <!-- lobby -->
+  <div *ngIf="state.gameState == 'LOBBY'">
+    <div *ngIf="state.me.czar">
+      <p>Поздравляю, Вы - Царь! (но это не навсегда)</p>
+      <p>Дождитесь, пока имена всех участников покажутся на мониторе и нажмите на кнопку ниже</p>
+      <button (click)="startGame()">Начать игру!</button>
+    </div>
+    <div *ngIf="!state.me.czar">
+      <p>Добро пожаловать, {{state.me.name}}</p>
+      <p>Подождите, пока Царь решит начать игру</p>
+    </div>
+  </div>
+  <!-- /lobby -->
+
+  <!-- round_start -->
+  <div *ngIf="state.gameState == 'ROUND_START'">
+    <div *ngIf="state.me.czar">
+      <p>Ждите, пока остальные смешно по их мнению пошутят. Хорошо, что их мнение Царя не волнует</p>
+    </div>
+    <div *ngIf="!state.me.czar && state.blackCard && state.me.sentCards.length == 0">
+      <p>Выберите {{state.blackCard.cases.length}} из Ваших карт</p>
+      <ul class="whitecards">
+        <li *ngFor="let card of state.me.whiteCards" [class.selected]="selectedCards.indexOf(card.id) >= 0" (click)="toggleCard(card.id)" >
+          {{ card.cases.NOMINATIVE }}
+          <span class="order" *ngIf="selectedCards.indexOf(card.id) >= 0 && state.blackCard.cases.length > 1">
+            {{ selectedCards.indexOf(card.id) + 1 }}
+          </span>
+        </li>
+      </ul>
+      <button (click)="sendCards()" [disabled]="selectedCards.length < state.blackCard.cases.length">
+        Отправить карты
+      </button>
+    </div>
+    <div *ngIf="!state.me.czar && state.me.sentCards.length > 0">
+      <p>Теперь ждите, пока пошутят остальные</p>
+    </div>
+  </div>
+  <!-- /round start -->
+
+  <!-- round_court -->
+  <div *ngIf="state.gameState == 'ROUND_COURT'">
+    <div *ngIf="!state.me.czar">
+      <p>Ваш ответ оценивается Царём</p>
+    </div>
+    <div *ngIf="state.me.czar">
+      <ul class="jokes">
+        <li *ngFor="let p of state.others" (click)="winnerId = p.id" [class.selected]="p.id === winnerId">
+          <cah-joke 
+            [blackcard]="state.blackCard" 
+            [player]="p">
+          </cah-joke>
+        </li>
+      </ul>
+      <button (click)="chooseWinner()" [disabled]="winnerId === null">Выбрать победителя</button>
+    </div>
+  </div>
+  <!-- /round_court -->
+
+  <!-- round_next -->
+  <div *ngIf="state.gameState == 'ROUND_NEXT'">
+    <div *ngIf="!state.me.czar">
+      <p>Ждите, пока новый царь поймет, что он новый царь</p>
+    </div>
+    <div *ngIf="state.me.czar">
+      <p>Удовлетворившись результатом игры, нажмите на кнопку</p>
+      <button (click)="nextRound()">Перейти к следующему раунду</button>
+    </div>
+  </div>
+  <!-- /round_next -->
+
+  <!-- over -->
+  <div *ngIf="state.gameState == 'OVER'">
+    <p>Игра окончена. Надеюсь, вам понравилось</p>
+
+    <button (click)="window.location.reload()">Играть еще раз</button>
+  </div>
+  <!-- /over -->
+</div>
+<div class="loading" *ngIf="!state || !state.gameState">
+  Загрузка
+</div>

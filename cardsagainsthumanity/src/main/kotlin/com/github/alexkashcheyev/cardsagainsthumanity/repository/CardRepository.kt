@@ -286,7 +286,7 @@ class CardRepository(): ICardRepository {
             BlackCard(
                     id = 13,
                     text = "В новом реалити-шоу звёзды живут вместе с _.",
-                    cases = arrayListOf(GrammaticCase.PREPOSITIONAL)
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
             ),
             BlackCard(
                     id = 14,

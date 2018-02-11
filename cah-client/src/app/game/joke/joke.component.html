@@ -1,0 +1,5 @@
+<div *ngIf="getJokeParts()">
+  <span *ngFor="let j of getJokeParts()" [class.white]="!j.isBlack">
+    {{ j.text }}
+  </span>
+</div>

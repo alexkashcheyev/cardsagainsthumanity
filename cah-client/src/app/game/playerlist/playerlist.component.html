@@ -1,0 +1,10 @@
+<div *ngIf="!!players && !!players.length">
+  <h3>{{ title }}</h3>
+  <ul class="players">
+    <li *ngFor="let p of players" 
+    [class.czar]="p.czar" 
+    [class.sentCards]="p.sentCards.length > 0">
+      {{p.name}}
+    </li>
+  </ul>
+</div>

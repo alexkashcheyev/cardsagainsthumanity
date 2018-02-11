@@ -12,6 +12,7 @@ interface IGameService {
     fun startGame(gameId: Long, playerId: Long)
     fun sendCards(gameId: Long, playerId: Long, cardIds: Array<Long>)
     fun chooseWinner(gameId: Long, playerId: Long, winnerId: Long)
+    fun nextRound(gameId: Long, playerId: Long)
 
     fun getClientState(gameId: Long, playerId: Long): ClientState
     fun getMonitorState(gameId: Long): MonitorState

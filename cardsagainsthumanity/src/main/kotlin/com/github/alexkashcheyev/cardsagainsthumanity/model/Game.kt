@@ -14,7 +14,6 @@ class Game(
         var state: GameState = GameState.LOBBY,
         var blackCard: BlackCard? = null,
         var czar: Player? = null,
-        var lastWinner: Player? = null,
-        var newGameId: Long = 0
+        var lastWinner: Player? = null
 ) {
 }

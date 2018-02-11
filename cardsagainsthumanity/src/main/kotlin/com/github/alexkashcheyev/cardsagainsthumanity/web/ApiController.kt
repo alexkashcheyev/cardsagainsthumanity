@@ -88,4 +88,17 @@ class ApiController(private val gameService: GameService) {
             response.status = HttpServletResponse.SC_NOT_FOUND
         }
     }
+
+    @PostMapping("/api/nextround")
+    fun nextRound(
+            @RequestParam("game") gameId: Long,
+            @RequestParam("player") playerId: Long,
+            response: HttpServletResponse
+    ) {
+        try {
+            gameService.nextRound(gameId, playerId)
+        } catch (ex: IllegalArgumentException) {
+            response.status = HttpServletResponse.SC_FORBIDDEN
+        }
+    }
 }
