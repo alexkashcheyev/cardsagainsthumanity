@@ -11,14 +11,16 @@ class ApiController(private val gameService: GameService) {
     @GetMapping("/api/client")
     fun getClientState(
             @RequestParam("game") gameId: Long,
-            @RequestParam("player") playerId: Long
+            @RequestParam("player") playerId: Long,
+            response: HttpServletResponse
     ): ClientState {
         return gameService.getClientState(gameId, playerId)
     }
 
     @GetMapping("/api/monitor")
     fun getMonitorState(
-            @RequestParam("game") gameId: Long
+            @RequestParam("game") gameId: Long,
+            response: HttpServletResponse
     ): MonitorState {
         return gameService.getMonitorState(gameId)
     }
@@ -54,7 +56,7 @@ class ApiController(private val gameService: GameService) {
     ) {
         try {
             gameService.startGame(gameId, playerId)
-        } catch (ex: IllegalArgumentException) {
+        } catch (ex: Throwable) {
             response.status = HttpServletResponse.SC_FORBIDDEN
         }
     }
@@ -70,6 +72,8 @@ class ApiController(private val gameService: GameService) {
             gameService.sendCards(gameId, playerId, cardIds)
         } catch (ex: NullPointerException) {
             response.status = HttpServletResponse.SC_NOT_FOUND
+        } catch (ex: IllegalStateException) {
+            response.status = HttpServletResponse.SC_FORBIDDEN
         }
     }
 
@@ -86,6 +90,8 @@ class ApiController(private val gameService: GameService) {
             response.status = HttpServletResponse.SC_FORBIDDEN
         } catch (ex: NullPointerException) {
             response.status = HttpServletResponse.SC_NOT_FOUND
+        } catch (ex: IllegalStateException) {
+            response.status = HttpServletResponse.SC_FORBIDDEN
         }
     }
 
@@ -98,6 +104,8 @@ class ApiController(private val gameService: GameService) {
         try {
             gameService.nextRound(gameId, playerId)
         } catch (ex: IllegalArgumentException) {
+            response.status = HttpServletResponse.SC_FORBIDDEN
+        } catch (ex: IllegalStateException) {
             response.status = HttpServletResponse.SC_FORBIDDEN
         }
     }

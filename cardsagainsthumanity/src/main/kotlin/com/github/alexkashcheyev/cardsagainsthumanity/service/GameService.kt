@@ -22,6 +22,10 @@ class GameService (private val gameRepository: GameRepository): IGameService {
     override fun joinGame(gameId: Long, playerName: String): Long {
         val game = gameRepository.getById(gameId)
 
+        if (game.state != GameState.LOBBY) {
+            throw IllegalStateException("The game has already started")
+        }
+
         for (p in game.players.values) {
             if (p.name == playerName.trim()) {
                 return -1
@@ -46,6 +50,10 @@ class GameService (private val gameRepository: GameRepository): IGameService {
     override fun startGame(gameId: Long, playerId: Long) {
         val game = gameRepository.getById(gameId)
 
+        if (game.state != GameState.LOBBY) {
+            throw IllegalStateException("The game has already started")
+        }
+
         if (game.czar?.id != playerId) {
             throw IllegalArgumentException("Peasant is trying to start the game")
         }
@@ -58,6 +66,11 @@ class GameService (private val gameRepository: GameRepository): IGameService {
 
     override fun sendCards(gameId: Long, playerId: Long, cardIds: Array<Long>) {
         val game = gameRepository.getById(gameId)
+
+        if (game.state != GameState.ROUND_START) {
+            throw IllegalStateException("Sending cards is unavailable now")
+        }
+
         val player = game.players[playerId] ?: throw NullPointerException("There is no such player")
         player.isAlive = true
 
@@ -90,6 +103,10 @@ class GameService (private val gameRepository: GameRepository): IGameService {
     override fun chooseWinner(gameId: Long, playerId: Long, winnerId: Long) {
         val game = gameRepository.getById(gameId)
 
+        if (game.state != GameState.ROUND_COURT) {
+            throw IllegalStateException("Choosing winner is unavailable now")
+        }
+
         if (game.czar?.id != playerId) {
             throw IllegalArgumentException("Peasant is trying to choose the winner")
         }
@@ -97,6 +114,8 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         val winner = game.players[winnerId] ?: throw  NullPointerException("There is no such player")
 
         winner.points++
+
+        game.lastWinner = winner;
 
         setNextCzar(game)
 
@@ -109,6 +128,10 @@ class GameService (private val gameRepository: GameRepository): IGameService {
 
     override fun nextRound(gameId: Long, playerId: Long) {
         val game = gameRepository.getById(gameId)
+
+        if (game.state != GameState.ROUND_NEXT) {
+            throw IllegalStateException("Starting new round is unavailable now")
+        }
 
         tryStartRound(game)
     }

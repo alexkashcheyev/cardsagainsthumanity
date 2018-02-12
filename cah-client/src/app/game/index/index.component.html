@@ -1,11 +1,11 @@
 <div class="index">
   <div class="option">
-    <h2>Это Ваше личное устройство?</h2>
-    <p>Отсканируйте QR-код либо введите числовой код вручную</p>
+    <h2 *ngIf="!fromQr">Это Ваше личное устройство?</h2>
+    <p *ngIf="!fromQr">Отсканируйте QR-код либо введите числовой код вручную</p>
     <form class="join-form">
       <div>
         <label for="gameId">Код игры:</label>
-        <input type="number" id="gameId" name="gameId" [(ngModel)]="gameId" />
+        <input type="number" id="gameId" name="gameId" [(ngModel)]="gameId" [disabled]="fromQr" />
       </div>
       <div>
         <label for="name">Ваше имя:</label>
@@ -14,7 +14,7 @@
       <button type="submit" (click)="join()">Присоединиться</button>
     </form>
   </div>
-  <div class="option">
+  <div class="option" *ngIf="!fromQr">
     <h2>
       Это устройство видят все игроки?
     </h2>

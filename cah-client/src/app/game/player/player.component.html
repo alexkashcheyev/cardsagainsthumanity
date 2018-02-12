@@ -5,7 +5,7 @@
       <p>Поздравляю, Вы - Царь! (но это не навсегда)</p>
       <p>Дождитесь, пока имена всех участников покажутся на мониторе и нажмите на кнопку ниже</p>
       <p class="button">
-        <button (click)="startGame()">Начать игру!</button>
+        <button (click)="startGame()" [disabled]="state.others.length < 2">Начать игру!</button>
       </p>
     </div>
     <div *ngIf="!state.me.czar">
@@ -48,6 +48,7 @@
       <p>Ваш ответ оценивается Царём</p>
     </div>
     <div *ngIf="state.me.czar">
+      <p>Прочитайте все ответы вслух с выражением и выберите самый смешной по Вашему мнению.</p>
       <ul class="jokes">
         <li *ngFor="let p of state.others" (click)="winnerId = p.id" [class.selected]="p.id === winnerId">
           <cah-joke 
@@ -56,7 +57,9 @@
           </cah-joke>
         </li>
       </ul>
-      <button (click)="chooseWinner()" [disabled]="winnerId === null">Выбрать победителя</button>
+      <p>
+        <button (click)="chooseWinner()" [disabled]="winnerId === null">Выбрать победителя</button>
+      </p>
     </div>
   </div>
   <!-- /round_court -->

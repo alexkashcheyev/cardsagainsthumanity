@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class GameStateService {
-  readonly API_ROOT = 'http://localhost:8080/api/';
+  private readonly API_ROOT = 'http://localhost:8080/api/';
 
   public mode = 'index';
   public state: any;
@@ -11,6 +11,10 @@ export class GameStateService {
   constructor(private httpClient: HttpClient) { }
 
   public updateMonitorState(game: number): void {
+    if (this.checkOver()) {
+      return;
+    }
+
     this.httpClient.get(this.API_ROOT + 'monitor?game=' + game, {}).toPromise()
     .then((v) => {
       this.state = v;
@@ -20,6 +24,10 @@ export class GameStateService {
   }
 
   public updatePlayerState(game: number, player: number): void {
+    if (this.checkOver()) {
+      return;
+    }
+
     this.httpClient.get(this.API_ROOT + 'client?game=' + game + '&player=' + player, {}).toPromise()
     .then((v) => {
       this.state = v;
@@ -112,6 +120,15 @@ export class GameStateService {
     .then(v => {
       console.log('success');
     });
+  }
+
+  private checkOver(): boolean {
+    if (!!this.state && !!this.state.gameState && this.state.gameState === 'OVER') {
+      console.log('The game is over');
+      localStorage.removeItem('active');
+      return true;
+    }
+    return false;
   }
 
 }

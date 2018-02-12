@@ -1,7 +1,7 @@
 <ul class="players" *ngIf="!!players && !!players.length">
   <li *ngFor="let p of players">
     <span class="badge">
-      <i *ngIf="p.czar" class="fas fa-chess-queen"></i>
+      <i  *ngIf="p.czar" class="fas fa-chess-queen"></i>
     </span>
     <span class="name">{{ p.name }}</span>
     <span class="score">{{ p.points }}</span>
