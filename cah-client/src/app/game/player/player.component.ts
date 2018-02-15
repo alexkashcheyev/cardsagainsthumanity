@@ -7,13 +7,13 @@ import { GameStateService } from '../game-state.service';
   styles: []
 })
 export class PlayerComponent implements OnInit {
-  private gameId: number;
-  private playerId: number;
+  gameId: number;
+  playerId: number;
 
-  private selectedCards = new Array<number>();
-  private winnerId: number = null;
+  selectedCards = new Array<number>();
+  winnerId: number = null;
 
-  private get state() {
+  get state() {
     return this.gameState.state;
   }
 
@@ -54,8 +54,8 @@ export class PlayerComponent implements OnInit {
     }
   }
 
-  public nextRound() {
-    this.gameState.nextRound(this.gameId, this.playerId);
+  public nextRound(haiku = false) {
+    this.gameState.nextRound(this.gameId, this.playerId, haiku);
   }
 
   reload() {

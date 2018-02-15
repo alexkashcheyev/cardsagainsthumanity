@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styles: []
 })
 export class PlayerlistComponent implements OnInit {
-  @Input() players: Iterable<any>;
+  @Input() players: Array<any>;
 
   constructor() { }
 

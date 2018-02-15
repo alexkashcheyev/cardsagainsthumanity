@@ -7,7 +7,7 @@ import { GameStateService } from '../game-state.service';
   styles: []
 })
 export class MonitorComponent implements OnInit {
-  private get state() {
+  get state() {
     return this.gameState.state;
   }
 

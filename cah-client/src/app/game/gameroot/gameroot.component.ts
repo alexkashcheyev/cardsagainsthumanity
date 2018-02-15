@@ -8,7 +8,7 @@ import { GameStateService } from './../game-state.service';
 })
 export class GamerootComponent implements OnInit {
 
-  private get mode() {
+  public get mode() {
     return this.gameState.mode;
   }
 

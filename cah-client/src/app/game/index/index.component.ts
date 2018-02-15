@@ -8,9 +8,9 @@ import { GameStateService } from '../game-state.service';
   styles: []
 })
 export class IndexComponent implements OnInit {
-  private fromQr = false;
-  private gameId: number;
-  private name: string;
+  fromQr = false;
+  gameId: number;
+  name: string;
 
   constructor(private gameState: GameStateService) { }
 

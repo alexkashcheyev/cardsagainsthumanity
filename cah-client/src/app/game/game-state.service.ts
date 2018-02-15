@@ -108,10 +108,13 @@ export class GameStateService {
     });
   }
 
-  public nextRound(gameId: number, playerId: number) {
+  public nextRound(gameId: number, playerId: number, haiku: boolean) {
     const body = new FormData();
     body.append('game', '' + gameId);
     body.append('player', '' + playerId);
+    if (haiku) {
+      body.append('haiku', 'true');
+    }
 
     this.httpClient.post(
       this.API_ROOT + 'nextround',

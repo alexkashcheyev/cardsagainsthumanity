@@ -25,7 +25,8 @@ export class JokeComponent implements OnInit {
 
     let w = 0;
     let b = 0;
-    let blackTurn = this.blackcard['text'][0] !== '_';
+    // let blackTurn = this.blackcard['text'][0] !== '_';
+    let blackTurn = true;
 
     while (w < whiteParts.length || b < blackParts.length) {
       if (blackTurn && b < blackParts.length) {

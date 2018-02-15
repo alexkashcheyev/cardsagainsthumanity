@@ -57,7 +57,7 @@
           </cah-joke>
         </li>
       </ul>
-      <p>
+      <p class="button">
         <button (click)="chooseWinner()" [disabled]="winnerId === null">Выбрать победителя</button>
       </p>
     </div>
@@ -72,7 +72,10 @@
     <div *ngIf="state.me.czar">
       <p>Удовлетворившись результатом игры, нажмите на кнопку</p>
       <p class="button">
-        <button (click)="nextRound()">Следующий раунд</button>
+        <button (click)="nextRound()">Продолжить</button>
+      </p>
+      <p class="button">
+        <button *ngIf="state.blackCard.id != 999" (click)="nextRound(true)">Уже надоело</button>
       </p>
     </div>
   </div>

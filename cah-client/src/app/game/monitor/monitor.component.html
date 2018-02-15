@@ -6,7 +6,7 @@
       <div class="game-id">{{state.gameId}}</div>
       <p>Введите этот код, чтобы присоединиться к игре</p>
       <p>Или отсканируйте этот QR-код:</p>
-      <img class="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=http%3A%2F%2Fsomething.com%2F%3Fgame%3D{{state.gameId}}">
+      <img class="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https%3A%2F%2Finhumane-cards.herokuapp.com%2F%3Fgame%3D{{state.gameId}}">
     </div>
     <cah-playerlist 
       class="playerlist-half"
@@ -16,8 +16,9 @@
   <!-- /lobby -->
 
   <!-- round_start -->
-  <ng-container *ngIf="state.gameState == 'ROUND_START' && !!state.blackCard && !!state.blackCard.text">
-    <h2>Раунд начался</h2>
+  <ng-container *ngIf="state.gameState == 'ROUND_START' && !!state.blackCard && !!state.blackCard.id && !!state.blackCard.text">
+    <h2 *ngIf="state.blackCard.id != 999">Раунд</h2>
+    <h2 *ngIf="state.blackCard.id == 999">Последний раунд</h2>
     <div class="full">
       <div class="blackCard">
         {{state.blackCard.text | underscore }}
