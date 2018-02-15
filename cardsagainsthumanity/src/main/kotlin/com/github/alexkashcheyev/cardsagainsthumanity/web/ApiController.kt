@@ -99,10 +99,11 @@ class ApiController(private val gameService: GameService) {
     fun nextRound(
             @RequestParam("game") gameId: Long,
             @RequestParam("player") playerId: Long,
+            @RequestParam(value = "haiku", required = false, defaultValue = "false") isHaikuRound: Boolean,
             response: HttpServletResponse
     ) {
         try {
-            gameService.nextRound(gameId, playerId)
+            gameService.nextRound(gameId, playerId, isHaikuRound)
         } catch (ex: IllegalArgumentException) {
             response.status = HttpServletResponse.SC_FORBIDDEN
         } catch (ex: IllegalStateException) {

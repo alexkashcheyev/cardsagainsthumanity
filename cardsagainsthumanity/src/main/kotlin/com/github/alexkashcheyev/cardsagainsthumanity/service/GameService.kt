@@ -4,6 +4,7 @@ import com.github.alexkashcheyev.cardsagainsthumanity.model.Game
 import com.github.alexkashcheyev.cardsagainsthumanity.model.GameState
 import com.github.alexkashcheyev.cardsagainsthumanity.model.Player
 import com.github.alexkashcheyev.cardsagainsthumanity.repository.GameRepository
+import com.github.alexkashcheyev.cardsagainsthumanity.repository.ICardRepository
 import com.github.alexkashcheyev.cardsagainsthumanity.web.ClientState
 import com.github.alexkashcheyev.cardsagainsthumanity.web.MonitorState
 import com.github.alexkashcheyev.cardsagainsthumanity.web.PlayerPrivateState
@@ -13,7 +14,7 @@ import java.util.*
 import java.util.Collections.shuffle
 
 @Service
-class GameService (private val gameRepository: GameRepository): IGameService {
+class GameService (private val gameRepository: GameRepository, private val cardRepository: ICardRepository): IGameService {
 
     override fun createGame(): Long {
         return gameRepository.create().id
@@ -126,14 +127,14 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         }
     }
 
-    override fun nextRound(gameId: Long, playerId: Long) {
+    override fun nextRound(gameId: Long, playerId: Long, isHaikuRound: Boolean) {
         val game = gameRepository.getById(gameId)
 
         if (game.state != GameState.ROUND_NEXT) {
             throw IllegalStateException("Starting new round is unavailable now")
         }
 
-        tryStartRound(game)
+        tryStartRound(game, isHaikuRound)
     }
 
     override fun getClientState(gameId: Long, playerId: Long): ClientState {
@@ -180,20 +181,27 @@ class GameService (private val gameRepository: GameRepository): IGameService {
         queue.addAll(temp)
     }
 
-    private fun tryStartRound(game: Game) {
-        if (startRound(game)) {
+    private fun tryStartRound(game: Game, end: Boolean = false) {
+        if (startRound(game, end)) {
             game.state = GameState.ROUND_START
         } else {
             game.state = GameState.OVER
         }
     }
 
-    private fun startRound(game: Game): Boolean {
-        if (game.blackDeck.isEmpty()) {
+    private fun startRound(game: Game, end: Boolean): Boolean {
+        if (!end && game.blackDeck.isEmpty()) {
+            return false
+        }
+        if (game.blackCard != null && game.blackCard!!.id == 999L) {
             return false
         }
 
-        game.blackCard = game.blackDeck.remove()
+        if (end) {
+            game.blackCard = cardRepository.getHaikuCard();
+        } else {
+            game.blackCard = game.blackDeck.remove()
+        }
 
         for (p in game.players.values) {
             p.sentCards.clear()

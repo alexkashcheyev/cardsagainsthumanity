@@ -1659,11 +1659,11 @@ class CardRepository(): ICardRepository {
                     id = 148,
                     cases = hashMapOf<GrammaticCase, String>(
                             Pair(GrammaticCase.NOMINATIVE,      "лоботомия"),
-                            Pair(GrammaticCase.GENITIVE,        "лоботомия"),
-                            Pair(GrammaticCase.DATIVE,          "лоботомия"),
-                            Pair(GrammaticCase.ACCUSATIVE,      "лоботомия"),
-                            Pair(GrammaticCase.INSTRUMENTAL,    "лоботомия"),
-                            Pair(GrammaticCase.PREPOSITIONAL,   "лоботомия")
+                            Pair(GrammaticCase.GENITIVE,        "лоботомии"),
+                            Pair(GrammaticCase.DATIVE,          "лоботомии"),
+                            Pair(GrammaticCase.ACCUSATIVE,      "лоботомию"),
+                            Pair(GrammaticCase.INSTRUMENTAL,    "лоботомией"),
+                            Pair(GrammaticCase.PREPOSITIONAL,   "лоботомии")
                     )
             ),
             WhiteCard(
@@ -5180,19 +5180,20 @@ class CardRepository(): ICardRepository {
     )
 
     private val blackCards = listOf(
+            // This list of black cards is my own amateur translation from original
             BlackCard(
                     id = 1,
-                    text = "__? для этого есть приложение.",
+                    text = "Как я потерял девственность? — __",
                     cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 2,
-                    text = "Что мешает мне уснуть? - __.",
+                    text = "Что мешает мне уснуть? — __.",
                     cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 3,
-                    text = "Чем пахнет? - __.",
+                    text = "Чем пахнет? — __.",
                     cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
             ),
             BlackCard(
@@ -5202,32 +5203,32 @@ class CardRepository(): ICardRepository {
             ),
             BlackCard(
                     id = 5,
-                    text = "Она такая от рождения. Может, дело в _.",
+                    text = "Может, это у неё с рождения. А может, дело в _.",
                     cases = arrayListOf(GrammaticCase.PREPOSITIONAL)
             ),
             BlackCard(
                     id = 6,
-                    text = "Какая будет следующая игрушка в «Хэппи Мил»? - __.",
+                    text = "Какая будет следующая игрушка в «Хэппи Мил»? — __.",
                     cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 7,
-                    text = "Антропологи обнаружили племя, боготворящее _.",
-                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+                    text = "Я помню чудное мгновенье, передо мной явилась ты,\r\n Как мимолётное виде́нье, как _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 8,
-                    text = "Жаль, что детишки теперь увлекаются только _.",
-                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
-            ),
-            BlackCard(
-                    id = 9,
-                    text = "Пикассо, будучи в ударе, написал сотни полотен _.",
+                    text = "Очень жаль, что современные дети ничего кроме _ и видеть не хотят",
                     cases = arrayListOf(GrammaticCase.GENITIVE)
             ),
             BlackCard(
+                    id = 9,
+                    text = "Сегодня в «Пусть говорят»: «Помогите! Мой сын — _!»",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
                     id = 10,
-                    text = "Альтернативная медицина основана на целебной силе _.",
+                    text = "Альтернативная медицина сейчас осваивает целебную силу  _.",
                     cases = arrayListOf(GrammaticCase.GENITIVE)
             ),
             BlackCard(
@@ -5237,8 +5238,8 @@ class CardRepository(): ICardRepository {
             ),
             BlackCard(
                     id = 12,
-                    text = "Чем закончились мои последние отношения? - __.",
-                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+                    text = "Что это за звук? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 13,
@@ -5247,38 +5248,384 @@ class CardRepository(): ICardRepository {
             ),
             BlackCard(
                     id = 14,
+                    text = "Почему закончились мои последние отношения? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),            
+            BlackCard(
+                    id = 15,
                     text = "Я пью, чтобы забыть _.",
                     cases = arrayListOf(GrammaticCase.ACCUSATIVE)
             ),
             BlackCard(
-                    id = 15,
-                    text = "Извините, профессор, но я не смог сделать домашку из-за _.",
+                    id = 16,
+                    text = "Извините, но я не смог сделать домашку из-за _.",
                     cases = arrayListOf(GrammaticCase.GENITIVE)
             ),
             BlackCard(
-                    id = 16,
-                    text = "Тайное увлечение Бэтмена - _.",
-                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
-            ),
-            BlackCard(
                     id = 17,
-                    text = "И да наступит конец. И да померкнет свет. И снизойдёт на Землю _.",
+                    text = "Тайное увлечение Бэтмена — _.",
                     cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 18,
-                    text = "Лучшие друзья девушек - это _.",
+                    text = "И да наступит конец. И да померкнет свет. И снизойдёт на Землю _.",
                     cases = arrayListOf(GrammaticCase.NOMINATIVE)
             ),
             BlackCard(
                     id = 19,
+                    text = "Лучшие друзья девушек — это _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 20,
                     text = "Службы безопасности ввели запрет на _ в самолетах.",
                     cases = arrayListOf(GrammaticCase.ACCUSATIVE)
             ),
             BlackCard(
-                    id = 20,
+                    id = 21,
                     text = "__. Вот о такой смерти я мечтаю",
                     cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 22,
+                    text = "А теперь я вытащу _ из _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE, GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 23,
+                    text = "В своей новой программе Ольга Бузова будет сражаться с _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 24,
+                    text = "__ — скользкая дорожка, которая непременно приведёт тебя к _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.DATIVE)
+            ),
+            BlackCard(
+                    id = 25,
+                    text = "Я бы не справился без помощи _",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 26,
+                    text = "Детям, которые плохо себя ведут, Дед Мороз приносит _",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 27,
+                    text = "Что главное для настоящего эмо? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 28,
+                    text = "Дорогая редакция! У меня проблема с _ и мне нужен ваш совет.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 29,
+                    text = "Через тысячу лет, когда никто не вспомнит про бумажные деньги, чем люди будут платить за товары и услуги? — _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 30,
+                    text = "Потрясающим супергеройским дуэтом стали бы _ и _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 31,
+                    text = "В новом фильме Гарик Харламов обнаружит, что _ — это на самом деле —.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 32,
+                    text = "Романтический ужин будет неполон без _.",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 33,
+                    text = "__ — ты ещё попросишь добавки!",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 34,
+                    text = "Белые гетеросексуальные мужчины любят _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 35,
+                    text = "__. Дай пять!",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 36,
+                    text = "Новая книга Дж. К. Роллинг — «Гарри Поттер и _»",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 37,
+                    text = "Экстремальный футбол — это как обычный, только с _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 38,
+                    text = "В мире, поглощённом _ наше единственное спасение — _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL, GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 39,
+                    text = "У войны есть и хорошая сторона — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 40,
+                    text = "Во время секса я представляю себе _.",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 41,
+                    text = "Что от меня прятали родители? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 42,
+                    text = "__ всегда повышает сексуальную привлекательность.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 43,
+                    text = "В тюрьме можно обменять 200 сигарет на _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 44,
+                    text = "_ — единственное, что я привёз из Мексики",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 45,
+                    text = "Что хуже всего обнаружить у себя в шаурме? — _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 46,
+                    text = "Что нужно взять с собой в прошлое, чтобы убедить всех, что ты волшебник? — _",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 47,
+                    text = "Как я поддерживаю свои отношения? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 48,
+                    text = "__. Это ловушка!",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 49,
+                    text = "В этом году выходит мюзикл «__»",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 50,
+                    text = "Пока Советский Союз противостоял США в космической гонке, Мексика вложила миллионы в исследование _.",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 51,
+                    text = "После землетрясения, жители Гаити обрели _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 52,
+                    text = "Скоро на ТВ, «Мир _»",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 53,
+                    text = "Шаг 1: _. Шаг 2: _. Шаг 3: Профит.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 54,
+                    text = "Нам говорили, что мы сошли с ума. Говорили, что мы не сможем засунуть _ в _. Они ошибались!",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE, GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 55,
+                    text = "Но прежде чем убить Вас, мистер Бонд, я хочу показать вам _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 56,
+                    text = "__ вызывает у меня неконтролируемое газообразование.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 57,
+                    text = "Новая «Газель». Способна доставить _ куда угодно.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 58,
+                    text = "Поездка с классом на природу была испорчена _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 59,
+                    text = "Фараон так и не соглашался, пока Моисей не вызвал ещё одну казнь — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 60,
+                    text = "В чём моя суперсила? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 61,
+                    text = "В Раю просто тонны _.",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 62,
+                    text = "Что бабушка посчитало бы раздражающим, но в то же время приятным? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 63,
+                    text = "Я никогда не понимал _, пока не столкнулся с _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE, GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 64,
+                    text = "Что США сбросили на Афганистан? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 65,
+                    text = "Что позволяет Бараку Обаме развеяться? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 66,
+                    text = "Что Вин Дизель съел на ужин? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 67,
+                    text = "__. Удовольствие до последней капли.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 68,
+                    text = "Почему я липкий? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 69,
+                    text = "Что становится только лучше с годами? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 70,
+                    text = "__. Проверено на детях, одобрено матерями.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 71,
+                    text = "Папа, почему мама плачет? — _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 72,
+                    text = "Чем пытается привлечь студентов рекрутинговое агентство? — _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 73,
+                    text = "Недавние исследования показали, что старшеклассники на 50% меньше занимаются сексом, если им показать _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            BlackCard(
+                    id = 74,
+                    text = "Жизнь индейцев навсегда изменилась, после того как Белый человек показал им _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
+            ),
+            // 75 - haiku
+            BlackCard(
+                    id = 76,
+                    text = "Я не знаю, каким оружием будет вестись Третья мировая, но Четвёртая — точно _.",
+                    cases = arrayListOf(GrammaticCase.INSTRUMENTAL)
+            ),
+            BlackCard(
+                    id = 77,
+                    text = "Почему у меня всё болит? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 78,
+                    text = "Почему я не могу выдержать пост? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 79,
+                    text = "О чём сейчас думает Джордж Буш? — О _.",
+                    cases = arrayListOf(GrammaticCase.PREPOSITIONAL)
+            ),
+            BlackCard(
+                    id = 80,
+                    text = "В музее открылась интерактивная экспозиция о _.",
+                    cases = arrayListOf(GrammaticCase.PREPOSITIONAL)
+            ),
+            BlackCard(
+                    id = 81,
+                    text = "Если бы я был Президентом США, я бы создал отдел _.",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 82,
+                    text = "Дисней представляет: «__: история _»",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 83,
+                    text = "Когда я стану миллиардером, я установлю двадцатиметровую статую в честь _.",
+                    cases = arrayListOf(GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 84,
+                    text = "Когда я впервые пробовал ЛСД, я видел _ вместо _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE, GrammaticCase.GENITIVE)
+            ),
+            BlackCard(
+                    id = 85,
+                    text = "Да, это я убил _. Хочешь знать, как? _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE, GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 86,
+                    text = "__ действует на меня как успокоительное.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 87,
+                    text = "__ + _ = _.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 88,
+                    text = "Что всегда зажжёт вечеринку? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 89,
+                    text = "Что это за новая чудодейственная диета? — __.",
+                    cases = arrayListOf(GrammaticCase.NOMINATIVE)
+            ),
+            BlackCard(
+                    id = 90,
+                    text = "Полезный совет: когда Ваш мужчина просит сделать ему минет, вместо этого сделайте ему _.",
+                    cases = arrayListOf(GrammaticCase.ACCUSATIVE)
             )
     )
 
@@ -5290,4 +5637,11 @@ class CardRepository(): ICardRepository {
         return blackCards
     }
 
+    override fun getHaikuCard(): BlackCard {
+        return BlackCard(
+                id = 999,
+                text = "Хокку: __.\r\n __. \r\n __.",
+                cases = arrayListOf(GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE, GrammaticCase.NOMINATIVE)
+        )
+    }
 }
