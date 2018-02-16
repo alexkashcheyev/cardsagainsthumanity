@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class GameStateService {
-  private readonly API_ROOT = 'http://localhost:8080/api/';
+  private readonly API_ROOT = 'https://inhumane-cards.herokuapp.com/api/';
 
   public mode = 'index';
   public state: any;

@@ -10,6 +10,7 @@ export class GamerootComponent implements OnInit {
 
   public get mode() {
     return this.gameState.mode;
+    // return 'monitor';
   }
 
   constructor(private gameState: GameStateService) { }

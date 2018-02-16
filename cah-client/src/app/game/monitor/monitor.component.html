@@ -4,9 +4,11 @@
     <h2>Ожидание игроков</h2>
     <div class="half">
       <div class="game-id">{{state.gameId}}</div>
-      <p>Введите этот код, чтобы присоединиться к игре</p>
-      <p>Или отсканируйте этот QR-код:</p>
-      <img class="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https%3A%2F%2Finhumane-cards.herokuapp.com%2F%3Fgame%3D{{state.gameId}}">
+      <p>Введите это число, чтобы присоединиться к игре</p>
+      <p>Или отсканируйте QR-код:</p>
+      <div class="qrcode">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https%3A%2F%2Finhumane-cards.herokuapp.com%2F%3Fgame%3D{{state.gameId}}">
+      </div>
     </div>
     <cah-playerlist 
       class="playerlist-half"
@@ -49,7 +51,7 @@
 
     <ul class="full submissions">
       <ng-container *ngFor="let p of state.players">
-        <li *ngIf="p.sentCards.length > 0">
+        <li *ngIf="!!p.sentCards && p.sentCards.length > 0">
           <div class="author">
             <i class="fas fa-trophy" *ngIf="p.id == state.winnerId"></i>
             <span class="name">{{ p.name }}:</span>
